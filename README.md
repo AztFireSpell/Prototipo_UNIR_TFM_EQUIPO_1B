@@ -96,7 +96,6 @@ carpeta_donde_hizo_el_git_clone/
 ├── MODULO_GLOBAL_INTERFAZ_BANCO.py
 ├── motor_inferencia.py
 ├── requirements.txt
-├── paysim.csv
 │
 ├── modelos/
 │   ├── xgboost_paysim.json
@@ -121,6 +120,8 @@ carpeta_donde_hizo_el_git_clone/
     ├── paysim.db
     ├── crear_db_paysim.py
     └── paysim.csv
+
+La carpeta notebooks se incluye por si se quiere realizar nuevamente los entrenamientos correspondientes, sin embargo debera acomodar los archivos requeridos para ejecutarlos (como la base de paysim, tensores, etc)
 ```
 ---
 
