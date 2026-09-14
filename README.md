@@ -79,13 +79,12 @@ Puede conservar ese nombre o renombrarlo como:
 paysim.csv
 ```
 
-Coloque el CSV en la carpeta raíz del proyecto:
+Coloque el CSV en la carpeta database despues ejecute el script crear_db_paysim.py, debera tener estos archivos:
 
 ```text
-prototipo/
+database/
 ├── paysim.csv
 ├── crear_db_paysim.py
-└── MODULO_GLOBAL_INTERFAZ_BANCO.py
 ```
 
 ---
@@ -93,9 +92,8 @@ prototipo/
 ## 3. Estructura esperada del proyecto
 
 ```text
-prototipo/
+carpeta_donde_hizo_el_git_clone/
 ├── MODULO_GLOBAL_INTERFAZ_BANCO.py
-├── crear_db_paysim.py
 ├── motor_inferencia.py
 ├── requirements.txt
 ├── paysim.csv
@@ -120,11 +118,10 @@ prototipo/
 │       └── predicciones_test.csv
 │
 └── database/
-    └── paysim.db
+    ├── paysim.db
+    ├── crear_db_paysim.py
+    └── paysim.csv
 ```
-
-La carpeta `database` y el archivo `paysim.db` se pueden generar automáticamente con el script de importación.
-
 ---
 
 ## 4. Crear y activar el entorno virtual
@@ -179,7 +176,7 @@ Si el proyecto utiliza TensorFlow 2.10, se recomienda mantener versiones compati
 Una configuración compatible de referencia es:
 
 ```text
-tensorflow==2.10.0
+tensorflow==2.21.0
 protobuf==3.19.6
 numpy==1.26.4
 streamlit
@@ -260,105 +257,6 @@ Para detener la aplicación, presione:
 ```text
 Ctrl + C
 ```
-
----
-
-## 8. Orden recomendado para la presentación
-
-1. Abra **Monitoreo Global Ejecutivo** y explique la comparación de los cuatro modelos.
-2. Muestre que PR-AUC es la métrica principal debido al desbalance de clases.
-3. Abra **Optimizador What-If** y cambie el umbral para demostrar el equilibrio entre detección y falsas alertas.
-4. Abra **Simulador en Vivo**.
-5. Busque una cuenta PaySim o cree un cliente simulado.
-6. Registre una nueva transacción.
-7. Explique el score de riesgo y la recomendación de revisión.
-8. Muestre que las simulaciones se almacenan por separado y que el histórico original no se modifica.
-9. Si se capturó una operación equivocada, demuestre la eliminación de la última simulación.
-
----
-
-## 9. Solución de problemas
-
-### No se encuentra el modelo XGBoost
-
-Compruebe que exista:
-
-```text
-modelos/xgboost_paysim.json
-```
-
-### No se encuentran las métricas
-
-Compruebe, por ejemplo:
-
-```text
-resultados/xgboost/metricas.json
-resultados/lstm/metricas.json
-```
-
-### No se encuentran las predicciones
-
-El optimizador What-If necesita archivos como:
-
-```text
-resultados/xgboost/predicciones_test.csv
-```
-
-Cada archivo debe incluir al menos:
-
-```text
-y_true
-probabilidad_fraude
-```
-
-### No existe la base PaySim
-
-Ejecute:
-
-```bash
-python crear_db_paysim.py --csv paysim.csv
-```
-
-### `XGBClassifier` no está definido
-
-Instale XGBoost y compruebe la importación:
-
-```bash
-python -m pip install xgboost
-python -c "from xgboost import XGBClassifier; print('XGBoost correcto')"
-```
-
-### Streamlit usa otro entorno
-
-Ejecute siempre:
-
-```bash
-python -m streamlit run MODULO_GLOBAL_INTERFAZ_BANCO.py
-```
-
-En lugar de depender únicamente del comando `streamlit run`.
-
-### Conflicto de protobuf
-
-Compruebe las versiones instaladas:
-
-```bash
-python -c "import google.protobuf; print(google.protobuf.__version__)"
-python -m pip check
-```
-
-Si utiliza TensorFlow 2.10, revise que `protobuf` sea compatible con esa versión y con el resto del entorno.
-
----
-
-## 10. Consideraciones del prototipo
-
-- PaySim es un conjunto sintético utilizado para experimentación en detección de fraude.
-- Las cuentas PaySim son identificadores simulados, no personas reales.
-- Las transacciones creadas desde la interfaz se almacenan en tablas separadas.
-- El score de riesgo no equivale por sí solo a una confirmación de fraude.
-- Una alerta debe interpretarse como una recomendación de revisión.
-- En una implementación real, los saldos y las autorizaciones provendrían del sistema transaccional del banco.
 
 ---
 
