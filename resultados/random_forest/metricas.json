@@ -1,0 +1,34 @@
+{
+  "model": "Random Forest",
+  "data_unit": "transaccion",
+  "split_mode": "time",
+  "n_train": 4072076,
+  "n_valid": 1018020,
+  "n_test": 1272524,
+  "training_seconds": 559.2498789000092,
+  "inference_seconds": 9.207001700007822,
+  "metrics_threshold_0_5": {
+    "threshold": 0.5,
+    "roc_auc": 0.8612368675387877,
+    "pr_auc": 0.14435396922175908,
+    "precision": 0.3511943189154293,
+    "recall": 0.383638928067701,
+    "f1": 0.3667003707448601,
+    "tn": 1265255,
+    "fp": 3015,
+    "fn": 2622,
+    "tp": 1632
+  },
+  "metrics_threshold_validation": {
+    "threshold": 0.5579557917900942,
+    "roc_auc": 0.8612368675387877,
+    "pr_auc": 0.14435396922175908,
+    "precision": 0.34784570268441234,
+    "recall": 0.3624823695345557,
+    "f1": 0.3550132381719811,
+    "tn": 1265379,
+    "fp": 2891,
+    "fn": 2712,
+    "tp": 1542
+  }
+}
