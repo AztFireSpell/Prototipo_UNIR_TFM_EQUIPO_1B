@@ -37,7 +37,7 @@ La aplicación contiene tres módulos:
 
 ## 1. Requisitos previos
 
-Antes de comenzar, se necesita:
+Antes de comenzar, se necesita contar con lo siguiente:
 
 - Windows, Linux o macOS.
 - Python 3.10 recomendado.
@@ -45,7 +45,36 @@ Antes de comenzar, se necesita:
 - Espacio suficiente para el CSV de PaySim y la base SQLite generada.
 - Los artefactos de modelos y resultados incluidos en el proyecto.
 
-Para comprobar Python:
+1. Descargar el proyecto
+
+Puedes obtener el proyecto de cualquiera de las siguientes formas:
+
+Opción 1: Clonar el repositorio con Git
+
+Si tienes Git instalado, ejecuta:
+
+```bash
+git clone https://github.com/AztFireSpell/Prototipo_UNIR_TFM_EQUIPO_1B.git
+```
+
+Después, entra a la carpeta del proyecto:
+
+```bash
+cd Prototipo_UNIR_TFM_EQUIPO_1B
+```
+
+
+Opción 2: Descargar el proyecto
+
+También puedes descargar directamente el proyecto utilizando el botón verde Code que se encuentra en la parte superior del repositorio y seleccionar Download ZIP.
+
+Una vez descargado, descomprime el archivo y abre una terminal dentro de la carpeta del proyecto.
+
+
+2. Comprobar la instalación de Python
+
+Para comprobar que Python está instalado y verificar su versión, ejecuta:
+
 
 ```bash
 python --version
@@ -59,7 +88,77 @@ Python 3.10.x
 
 ---
 
-## 2. Descargar el conjunto de datos PaySim
+3. Crear un entorno virtual
+
+Para evitar conflictos entre las dependencias del proyecto y otras instalaciones de Python, se recomienda utilizar un entorno virtual.
+
+Opción A: utilizando venv
+
+Crea el entorno virtual:
+
+```bash
+python -m venv .venv
+```
+
+Activa el entorno:
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Una vez activado, puedes comprobar que el entorno está funcionando correctamente:
+
+python --version
+
+Una vez activado el entorno recuerda instalar la dependencia de librerias con el comando:
+
+
+```bash
+pip install -r requerimentos.txt
+```
+
+
+Opción B: utilizando Conda
+
+Si utilizas Conda, se recomienda crear un entorno nuevo para este proyecto:
+
+```bash
+conda create -n paysim python=3.10
+```
+
+Activa el entorno con:
+
+```bash
+conda activate paysim
+```
+
+Después, comprueba la versión de Python:
+
+```bash
+python --version
+```
+La salida debería ser similar a:
+
+```text
+Python 3.10.x
+```
+
+Una vez activado el entorno recuerda instalar la dependencia de librerias con el comando:
+
+
+```bash
+pip install -r requerimentos.txt
+```
+
+## 4. Descargar el conjunto de datos PaySim
 
 Descargue el conjunto **Synthetic Financial Datasets For Fraud Detection** desde Kaggle:
 
@@ -85,118 +184,18 @@ Coloque el CSV en la carpeta database despues ejecute el script crear_db_paysim.
 database/
 ├── paysim.csv
 ├── crear_db_paysim.py
+
 ```
 
 ---
 
-## 3. Estructura esperada del proyecto
-
-```text
-carpeta_donde_hizo_el_git_clone/
-├── MODULO_GLOBAL_INTERFAZ_BANCO.py
-├── motor_inferencia.py
-├── requirements.txt
-│
-├── modelos/
-│   ├── xgboost_paysim.json
-│   └── mejor_modelo_lstm.keras
-│
-├── resultados/
-│   ├── random_forest/
-│   │   ├── metricas.json
-│   │   └── predicciones_test.csv
-│   ├── xgboost/
-│   │   ├── metricas.json
-│   │   ├── predicciones_test.csv
-│   │   └── importancia.csv
-│   ├── transformer/
-│   │   ├── metricas.json
-│   │   └── predicciones_test.csv
-│   └── lstm/
-│       ├── metricas.json
-│       └── predicciones_test.csv
-│
-└── database/
-    ├── paysim.db
-    ├── crear_db_paysim.py
-    └── paysim.csv
-
-La carpeta notebooks se incluye por si se quiere realizar nuevamente los entrenamientos correspondientes, sin embargo debera acomodar los archivos requeridos para ejecutarlos (como la base de paysim, tensores, etc)
-```
 ---
 
-## 4. Crear y activar el entorno virtual
-
-### Opción A: Conda
-
-```bash
-conda create -n prototipo_fraude python=3.10 -y
-conda activate prototipo_fraude
-```
-
-### Opción B: venv
-
-En Windows:
-
-```bash
-py -3.10 -m venv .venv
-.venv\Scripts\activate
-```
-
-En Linux o macOS:
-
-```bash
-python3.10 -m venv .venv
-source .venv/bin/activate
-```
-
-Actualice pip:
-
-```bash
-python -m pip install --upgrade pip
-```
-
----
-
-## 5. Instalar las dependencias
-
-Con el entorno virtual activado, instale los paquetes indicados en `requirements.txt`:
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-Compruebe que no existan conflictos:
-
-```bash
-python -m pip check
-```
-
-Si el proyecto utiliza TensorFlow 2.10, se recomienda mantener versiones compatibles en `requirements.txt`, especialmente para TensorFlow, protobuf y NumPy.
-
-Una configuración compatible de referencia es:
-
-```text
-tensorflow==2.21.0
-protobuf==3.19.6
-numpy==1.26.4
-streamlit
-pandas
-plotly
-scikit-learn
-xgboost
-joblib
-```
-
-> Si Streamlit y TensorFlow presentan restricciones incompatibles de `protobuf`, utilice entornos separados para entrenamiento y aplicación, o conserve las versiones que ya hayan sido verificadas en el equipo de presentación.
-
----
-
-## 6. Convertir PaySim a una base SQLite
+## 5. Convertir PaySim a una base SQLite
 
 La aplicación consulta PaySim mediante SQLite para evitar cargar millones de filas completas en la memoria RAM.
 
-Con el entorno activado y desde la raíz del proyecto, ejecute:
+Con el entorno activado y desde la carpeta database del proyecto, conjunto al archivo de paysim.csv ejecute:
 
 ```bash
 python crear_db_paysim.py --csv paysim.csv
@@ -207,6 +206,8 @@ Si el CSV conserva su nombre original:
 ```bash
 python crear_db_paysim.py --csv "PS_20174392719_1491204439457_log.csv"
 ```
+
+En dado caso de que el nombre sea diferente a estos 2, deberas usar el nombre de tu CSV
 
 El resultado se guardará en:
 
@@ -237,7 +238,7 @@ python crear_db_paysim.py --csv paysim.csv --reemplazar
 
 ---
 
-## 7. Ejecutar la aplicación
+## 6. Ejecutar la aplicación
 
 Desde la carpeta raíz del proyecto y con el entorno activado:
 

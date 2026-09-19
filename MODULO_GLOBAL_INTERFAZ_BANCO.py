@@ -749,7 +749,7 @@ with tab_simulador:
     BASE_DIR_SIM = Path(__file__).resolve().parent
     MODEL_PATH_SIM = BASE_DIR_SIM / "modelos" / "xgboost_paysim.json"
     METRICS_PATH_SIM = BASE_DIR_SIM / "resultados" / "xgboost" / "metricas.json"
-    DB_PATH_SIM = BASE_DIR_SIM / "database" / "paysim.db"
+    DB_PATH_SIM = BASE_DIR_SIM / "database" / "database" /"paysim.db"
 
     FEATURES_SIM = [
         "step", "amount", "hour", "day", "dest_is_merchant",

@@ -1,4 +1,3 @@
-bsl-py==2.5.0
 altair==6.2.2
 anyio==4.15.1
 astunparse==1.6.3
