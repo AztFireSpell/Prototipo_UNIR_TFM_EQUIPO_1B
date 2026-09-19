@@ -70,8 +70,11 @@ También puedes descargar directamente el proyecto utilizando el botón verde Co
 
 Una vez descargado, descomprime el archivo y abre una terminal dentro de la carpeta del proyecto.
 
+---
 
-2. Comprobar la instalación de Python
+---
+
+## 2. Comprobar la instalación de Python
 
 Para comprobar que Python está instalado y verificar su versión, ejecuta:
 
@@ -88,7 +91,8 @@ Python 3.10.x
 
 ---
 
-3. Crear un entorno virtual
+---
+## 3. Crear un entorno virtual
 
 Para evitar conflictos entre las dependencias del proyecto y otras instalaciones de Python, se recomienda utilizar un entorno virtual.
 
@@ -157,6 +161,7 @@ Una vez activado el entorno recuerda instalar la dependencia de librerias con el
 ```bash
 pip install -r requerimentos.txt
 ```
+---
 
 ## 4. Descargar el conjunto de datos PaySim
 
